@@ -25,6 +25,16 @@ module.exports = appInfo => {
     },
   };
 
+  // 数据库配置
+  exports.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1/message_admin', // 你的数据库地址，egg_article是你数据库得名字
+      options: {
+        useNewUrlParser: true,
+      },
+    },
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
