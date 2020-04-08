@@ -18,13 +18,16 @@ module.exports = appInfo => {
   // 支持跨域
 　config.security = {　　　　
     csrf: {　　　　　　
-      enable: false　　　　
+      enable: false, // 前后端分离，post请求不方便携带_csrf
+      ignoreJSON: true
     },
-    domainWhiteList: ['*']　　
+    domainWhiteList: ['*'] //配置白名单
   };
   config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+    // origin: '*', //允许所有跨域访问，注释掉则允许上面 白名单 访问
+    credentials: true, // 允许跨域请求携带cookies
+    // allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    allowMethods: 'GET,POST'
   };
 
   // add your middleware config here
