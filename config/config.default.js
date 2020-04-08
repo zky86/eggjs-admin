@@ -15,6 +15,18 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1585736537957_2832';
 
+  // 支持跨域
+　config.security = {　　　　
+    csrf: {　　　　　　
+      enable: false　　　　
+    },
+    domainWhiteList: ['*']　　
+  };
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+  };
+
   // add your middleware config here
   config.middleware = [];
 
