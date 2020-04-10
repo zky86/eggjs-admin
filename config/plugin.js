@@ -18,5 +18,11 @@ module.exports = {
   cors: {
       enable: true,
       package: 'egg-cors'
+  },
+
+  // 服务器表单验证
+  validate: {
+    enable: true,
+    package: 'egg-validate',
   }
 };

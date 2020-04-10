@@ -40,6 +40,12 @@ module.exports = appInfo => {
     },
   };
 
+  // 服务器表单验证
+  exports.validate = {
+    // convert: false,
+    // validateRoot: false,
+  };
+
   // 数据库配置
   exports.mongoose = {
     client: {
