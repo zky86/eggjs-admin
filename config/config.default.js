@@ -16,7 +16,8 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1585736537957_2832';
 
   // 支持跨域
-　config.security = {　　　　
+  　
+  config.security = {　　　　
     csrf: {　　　　　　
       enable: false, // 前后端分离，post请求不方便携带_csrf
       ignoreJSON: true
@@ -40,11 +41,22 @@ module.exports = appInfo => {
     },
   };
 
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: '',
+      db: 0,
+    },
+  }
+
   // 服务器表单验证
   exports.validate = {
     // convert: false,
     // validateRoot: false,
   };
+
+
 
   // 数据库配置
   exports.mongoose = {

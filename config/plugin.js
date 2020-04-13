@@ -16,13 +16,18 @@ module.exports = {
   },
   // 支持跨域
   cors: {
-      enable: true,
-      package: 'egg-cors'
+    enable: true,
+    package: 'egg-cors'
   },
 
   // 服务器表单验证
   validate: {
     enable: true,
     package: 'egg-validate',
+  },
+
+  redis: {
+    enable: true,
+    package: 'egg-redis',
   }
 };
