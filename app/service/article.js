@@ -6,6 +6,7 @@ class ArticleService extends Service {
    */
   async getProjectById() {
     const { ctx } = this;
+    // get 方式获取
     const page = ctx.query.page || 1;
     const pageSize = 5;
     // 获取当前数据表的总数量

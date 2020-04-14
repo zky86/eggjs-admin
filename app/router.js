@@ -9,6 +9,7 @@ module.exports = app => {
   router.post('/login', controller.login.index);
   const jwt = app.middleware.jwt();
   router.post('/list', jwt, controller.list.index);
+  router.post('/user', jwt, controller.user.index);
   router.get('/news', controller.news.list);
   router.get('/article', controller.article.index);
 };
