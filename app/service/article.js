@@ -7,8 +7,9 @@ class ArticleService extends Service {
   async getProjectById() {
     const { ctx } = this;
     // get 方式获取
-    const page = ctx.query.page || 1;
-    const pageSize = 5;
+    const page = parseInt(ctx.query.page) || 1;
+    const pageSize = parseInt(ctx.query.pageSize) || 5;
+    console.log(pageSize);
     // 获取当前数据表的总数量
     const totalNum = await ctx.model.Article.find({}).count();
     // 分页结果
