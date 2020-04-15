@@ -56,8 +56,6 @@ module.exports = appInfo => {
     // validateRoot: false,
   };
 
-
-
   // 数据库配置
   exports.mongoose = {
     client: {
@@ -68,8 +66,16 @@ module.exports = appInfo => {
     },
   };
 
+  // 配置上传文件白名单
+  config.multipart = {
+    fileSize: '10mb',
+    fileExtensions: ['.mp3', '.m4a'],
+  };
+
   // add your user config here
   const userConfig = {
+    mongodbUrl: 'mongodb://127.0.0.1:27017',
+    mongodbName: 'message_admin'
     // myAppName: 'egg',
   };
 
