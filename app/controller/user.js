@@ -5,15 +5,7 @@ const Controller = require('./base');
  * @controller user 用户接口
  */
 class UserController extends Controller {
-  /**
-   * @summary 获取用户
-   * @description 分页获取用户信息
-   * @router get /user/query
-   * @request query string keyword 模糊搜索name
-   * @request query integer pageIndex 页码 默认 1
-   * @request query integer pageSize 单页数量 默认 10
-   * @response 200 userResponse 请求成功
-   */
+
   // async query() {
   //   const {
   //     ctx,
@@ -31,6 +23,16 @@ class UserController extends Controller {
   //     ctx.body = JSON.stringify(err);
   //   }
   // }
+
+  /**
+   * @summary 获取用户
+   * @description 分页获取用户信息
+   * @router get /user/query
+   * @request query string keyword 模糊搜索name
+   * @request query integer pageIndex 页码 默认 1
+   * @request query integer pageSize 单页数量 默认 10
+   * @response 200 userResponse 请求成功
+   */
   async query() {
     const { ctx, service } = this;
     const pageIndex = Number(ctx.query.pageIndex || 1);
@@ -39,18 +41,29 @@ class UserController extends Controller {
     this.success(await service.user.list(pageIndex, pageSize, { username: { $regex: new RegExp(keyword, 'i') } }));
   }
 
+
   /**
-     * @summary 删除
-     * @description 删除
-     * @router delete /user/destroy/{id}
-     * @request path string *id
-     * @request header string *token
-     * @response 200 response 删除成功
+     * @summary 更新/创建
+     * @description 更新传 _id 创建不传 _id
+     * @router post /user/update
+     * @request body user *body
+     * @response 200 response 更新成功
      */
+  async update() {
+    // token验证
+    this.success(await this.ctx.service.user.update(this.ctx.request.body));
+  }
+
+  /**
+   * @summary 删除
+   * @description 删除
+   * @router delete /user/destroy/{id}
+   * @request path string *id
+   * @response 200 response 删除成功
+  */
   async destroy() {
     const { ctx, service } = this;
     const id = ctx.query._id;
-    console.log(id);
     this.success(await service.user.destroy(id));
   }
 }

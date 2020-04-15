@@ -20,10 +20,17 @@ class UserService extends Service {
   //   };
   //   return res;
   // }
+  // 获取列表
   async list(pageIndex, pageSize, condition) {
     return await this._list(collection, pageIndex, pageSize, condition);
   }
 
+  // 添加
+  async update(params) {
+    return await this._update(collection, params);
+  }
+
+  // 删除
   async destroy(id) {
     return await this._destroy(collection, id);
   }
