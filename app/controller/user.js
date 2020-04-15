@@ -35,8 +35,23 @@ class UserController extends Controller {
     const { ctx, service } = this;
     const pageIndex = Number(ctx.query.pageIndex || 1);
     const pageSize = Number(ctx.query.pageSize || 10);
-    const keyword = ctx.query.keyword || '';
+    const keyword = ctx.query.username || '';
     this.success(await service.user.list(pageIndex, pageSize, { username: { $regex: new RegExp(keyword, 'i') } }));
+  }
+
+  /**
+     * @summary 删除
+     * @description 删除
+     * @router delete /user/destroy/{id}
+     * @request path string *id
+     * @request header string *token
+     * @response 200 response 删除成功
+     */
+  async destroy() {
+    const { ctx, service } = this;
+    const id = ctx.query._id;
+    console.log(id);
+    this.success(await service.user.destroy(id));
   }
 }
 module.exports = UserController;

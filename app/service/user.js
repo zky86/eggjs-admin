@@ -23,5 +23,9 @@ class UserService extends Service {
   async list(pageIndex, pageSize, condition) {
     return await this._list(collection, pageIndex, pageSize, condition);
   }
+
+  async destroy(id) {
+    return await this._destroy(collection, id);
+  }
 }
 module.exports = UserService;
