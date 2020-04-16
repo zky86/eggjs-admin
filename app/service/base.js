@@ -32,28 +32,52 @@ class BaseService extends Service {
       });
     });
   }
-  async _list(col, pageIndex = 1, pageSize = 10, condition = {}) {
+  async _list(col, pageIndex = 1, pageSize = 10, condition = {}, sort = {}) {
     const {
       collection,
       client,
     } = await this.getConllection(col);
     const total = await this.getConllectionCount(collection, condition);
     return new Promise((resolve, reject) => {
-      collection
-        .find(condition)
-        .skip((pageIndex - 1) * pageSize)
-        .limit(pageSize)
-        .toArray(function(err, result) {
-          if (err) throw reject(err);
-          client.close();
-          resolve({
-            list: result,
-            pageIndex,
-            pageSize,
-            total,
-            hasNextPage: pageIndex * pageSize < total,
+      if (sort.hasOwnProperty('sort') && sort.sort) {
+        // const name = sort.sort;
+        // var type= JSON.parse(JSON.stringify(name).replace(/CourseName/g,"title"));
+        // const type = {
+        //   name: -1,
+        // };
+        collection
+          .find(condition)
+          // .sort(type)
+          .skip((pageIndex - 1) * pageSize)
+          .limit(pageSize)
+          .toArray(function(err, result) {
+            if (err) throw reject(err);
+            client.close();
+            resolve({
+              list: result,
+              pageIndex,
+              pageSize,
+              total,
+              hasNextPage: pageIndex * pageSize < total,
+            });
           });
-        });
+      } else {
+        collection
+          .find(condition)
+          .skip((pageIndex - 1) * pageSize)
+          .limit(pageSize)
+          .toArray(function(err, result) {
+            if (err) throw reject(err);
+            client.close();
+            resolve({
+              list: result,
+              pageIndex,
+              pageSize,
+              total,
+              hasNextPage: pageIndex * pageSize < total,
+            });
+          });
+      }
     });
   }
   async _update(col, params) {

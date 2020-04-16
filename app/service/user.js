@@ -21,8 +21,8 @@ class UserService extends Service {
   //   return res;
   // }
   // 获取列表
-  async list(pageIndex, pageSize, condition) {
-    return await this._list(collection, pageIndex, pageSize, condition);
+  async list(pageIndex, pageSize, condition, sort) {
+    return await this._list(collection, pageIndex, pageSize, condition, sort);
   }
 
   // 添加
