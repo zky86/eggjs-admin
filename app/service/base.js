@@ -39,45 +39,22 @@ class BaseService extends Service {
     } = await this.getConllection(col);
     const total = await this.getConllectionCount(collection, condition);
     return new Promise((resolve, reject) => {
-      if (sort.hasOwnProperty('sort') && sort.sort) {
-        // const name = sort.sort;
-        // var type= JSON.parse(JSON.stringify(name).replace(/CourseName/g,"title"));
-        // const type = {
-        //   name: -1,
-        // };
-        collection
-          .find(condition)
-          // .sort(type)
-          .skip((pageIndex - 1) * pageSize)
-          .limit(pageSize)
-          .toArray(function(err, result) {
-            if (err) throw reject(err);
-            client.close();
-            resolve({
-              list: result,
-              pageIndex,
-              pageSize,
-              total,
-              hasNextPage: pageIndex * pageSize < total,
-            });
+      collection
+        .find(condition)
+        .sort(sort)
+        .skip((pageIndex - 1) * pageSize)
+        .limit(pageSize)
+        .toArray(function(err, result) {
+          if (err) throw reject(err);
+          client.close();
+          resolve({
+            list: result,
+            pageIndex,
+            pageSize,
+            total,
+            hasNextPage: pageIndex * pageSize < total,
           });
-      } else {
-        collection
-          .find(condition)
-          .skip((pageIndex - 1) * pageSize)
-          .limit(pageSize)
-          .toArray(function(err, result) {
-            if (err) throw reject(err);
-            client.close();
-            resolve({
-              list: result,
-              pageIndex,
-              pageSize,
-              total,
-              hasNextPage: pageIndex * pageSize < total,
-            });
-          });
-      }
+        });
     });
   }
   async _update(col, params) {

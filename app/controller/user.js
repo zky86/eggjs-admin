@@ -39,8 +39,11 @@ class UserController extends Controller {
     const pageIndex = Number(ctx.query.pageIndex || 1);
     const pageSize = Number(ctx.query.pageSize || 10);
     const keyword = ctx.query.username || '';
-    const sort = ctx.query.sort || 'username';
-    this.success(await service.user.list(pageIndex, pageSize, { username: { $regex: new RegExp(keyword, 'i') } }, { sort }));
+    // 排序条件
+    const sort = {};
+    // eslint-disable-next-line dot-notation
+    sort['timestamp'] = -1; // 排序
+    this.success(await service.user.list(pageIndex, pageSize, { username: { $regex: new RegExp(keyword, 'i') } }, sort));
   }
 
 

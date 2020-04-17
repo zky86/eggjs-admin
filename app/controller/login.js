@@ -14,7 +14,6 @@ class HomeController extends Controller {
     ctx.body = { data: { token, expires: this.config.login_token_time }, code: 1, msg: '登录成功' };
     // await app.redis.get('loginToken').set(ctx.request.body.userName + ctx.request.body.password, token, 'ex', 7200); // 保存到redis
 
-
     // 为当前输入的密码加密
     // loginMsg.password = ctx.helper.encrypt(loginMsg.password);
     // 从service文件中拿到返回结果
