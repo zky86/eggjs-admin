@@ -36,14 +36,30 @@ class UserController extends Controller {
    */
   async query() {
     const { ctx, service } = this;
-    const pageIndex = Number(ctx.query.pageIndex || 1);
-    const pageSize = Number(ctx.query.pageSize || 10);
-    const keyword = ctx.query.username || '';
+    const pageIndex = Number(ctx.request.body.pageIndex || 1);
+    const pageSize = Number(ctx.request.body.pageSize || 10);
+    const keyword = ctx.request.body.username || '';
+    const date = ctx.request.body.date || [];
+
+    // 查找条件
+    let condition = '';
+    if (date[0]) {
+      condition = {
+        username: { $regex: new RegExp(keyword, 'i') },
+        $and: [{ timestamp: { $gt: date[0] } }, { timestamp: { $lt: date[1] } }],
+      };
+    } else {
+      condition = {
+        username: { $regex: new RegExp(keyword, 'i') },
+      };
+    }
+
     // 排序条件
-    const sort = {};
-    // eslint-disable-next-line dot-notation
-    sort['timestamp'] = -1; // 排序
-    this.success(await service.user.list(pageIndex, pageSize, { username: { $regex: new RegExp(keyword, 'i') } }, sort));
+    const sort = {
+      updateTime: -1,
+    };
+
+    this.success(await service.user.list(pageIndex, pageSize, condition, sort));
   }
 
 

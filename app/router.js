@@ -14,7 +14,7 @@ module.exports = app => {
   router.post('/common/upload', jwt, controller.common.upload);
 
   // 用户接口
-  router.get('/user/query', jwt, controller.user.query);
+  router.post('/user/query', jwt, controller.user.query);
   router.get('/user/destroy', jwt, controller.user.destroy);
   router.post('/user/update', controller.user.update);
 
