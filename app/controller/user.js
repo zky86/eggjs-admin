@@ -62,7 +62,6 @@ class UserController extends Controller {
     this.success(await service.user.list(pageIndex, pageSize, condition, sort));
   }
 
-
   /**
      * @summary 更新/创建
      * @description 更新传 _id 创建不传 _id
@@ -71,7 +70,6 @@ class UserController extends Controller {
      * @response 200 response 更新成功
      */
   async update() {
-    // token验证
     this.success(await this.ctx.service.user.update(this.ctx.request.body));
   }
 

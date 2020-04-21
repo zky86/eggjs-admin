@@ -25,7 +25,7 @@ class UserService extends Service {
     return await this._list(collection, pageIndex, pageSize, condition, sort);
   }
 
-  // 添加
+  // 新增，修改
   async update(params) {
     return await this._update(collection, params);
   }
