@@ -35,9 +35,12 @@ class ArticleController extends Controller {
     const { ctx, service } = this;
     const pageIndex = Number(ctx.request.body.pageIndex || 1);
     const pageSize = Number(ctx.request.body.pageSize || 10);
+    const user_id = ctx.request.body.user_id || '';
 
     // 查找条件
-    const condition = '';
+    const condition = {
+      user_id,
+    };
 
     // 排序条件
     const sort = {
