@@ -69,7 +69,7 @@ module.exports = appInfo => {
   // 配置上传文件白名单
   config.multipart = {
     fileSize: '10mb',
-    fileExtensions: ['.mp3', '.m4a'],
+    fileExtensions: ['.xlsx','.xls'], // 支持上传文件的扩展名
   };
 
   // add your user config here
