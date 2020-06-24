@@ -12,6 +12,7 @@ module.exports = app => {
 
   // common router
   router.post('/common/upload', jwt, controller.common.upload);
+  router.post('/common/uploadExcel', jwt, controller.common.uploadExcel);
 
   // 用户接口
   router.post('/user/query', jwt, controller.user.query);
