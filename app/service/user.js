@@ -34,5 +34,10 @@ class UserService extends Service {
   async destroy(id) {
     return await this._destroy(collection, id);
   }
+
+  // 获取列表
+  async excel(pageIndex, pageSize, condition, sort) {
+    return await this._list('excel', pageIndex, pageSize, condition, sort);
+  }
 }
 module.exports = UserService;

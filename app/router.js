@@ -18,6 +18,7 @@ module.exports = app => {
   router.post('/user/query', jwt, controller.user.query);
   router.get('/user/destroy', jwt, controller.user.destroy);
   router.post('/user/update', controller.user.update);
+  router.post('/user/excel', controller.user.excel);
 
   // 文章接口
   router.post('/article/query', jwt, controller.article.query);

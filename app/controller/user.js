@@ -85,5 +85,14 @@ class UserController extends Controller {
     const id = ctx.query._id;
     this.success(await service.user.destroy(id));
   }
+
+  // 获取Excel上传的数据
+  async excel() {
+    const { ctx, service } = this;
+
+    const pageIndex = Number(ctx.request.body.pageIndex || 1);
+    const pageSize = Number(ctx.request.body.pageSize || 10);
+    this.success(await service.user.excel(pageIndex, pageSize));
+  }
 }
 module.exports = UserController;

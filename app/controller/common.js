@@ -33,7 +33,7 @@ class CommonController extends Controller {
       for (const sheet in workbook.Sheets) {
         if (workbook.Sheets.hasOwnProperty(sheet)) {
           // 利用 sheet_to_json 方法将 excel 转成 json 数据
-          console.log(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
+          // console.log(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
           exceldata = exceldata.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
           // 打印解析出来的Excel 内容
           // break; // 如果只取第一张表，就取消注释这行

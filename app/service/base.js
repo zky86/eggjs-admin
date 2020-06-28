@@ -33,6 +33,7 @@ class BaseService extends Service {
     });
   }
   async _list(col, pageIndex = 1, pageSize = 10, condition = {}, sort = {}) {
+    console.log(pageSize);
     const {
       collection,
       client,
